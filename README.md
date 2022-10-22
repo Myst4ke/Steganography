@@ -4,6 +4,16 @@ Installation des librairies
 * `PIL` Pour gérer les Images : `pip3 install Pillow`
 * `numpy` Pour convertir les données de l'image en tableau : `pip3 install numpy`
 
+---
+
+### Road Map
+- [x] Ecriture de message 
+- [x] Lecture de message
+- [ ] Ecriture de fichiers
+- [ ] Lecture de fichiers
+
+---
+
 ### Fonctions :
 Chiffrement
 * `from_str_to_bin(message)` : Convertit une string en binaire caractère par caractère (grâce au code ascii).
