@@ -4,7 +4,7 @@ Installation des librairies
 * `PIL` Pour gérer les Images : `pip3 install Pillow`
 * `numpy` Pour convertir les données de l'image en tableau : `pip3 install numpy`
 
-## Fonctions :
+### Fonctions :
 Chiffrement
 * `from_str_to_bin(message)` : Convertit une string en binaire caractère par caractère (grâce au code ascii).
 * `change_img_data(msg, data)` : Ecrit les données du message bit par bit dans le RGBA de chaque pixel (4bits par pixel).
