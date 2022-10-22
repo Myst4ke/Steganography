@@ -2,6 +2,7 @@ from numpy import asarray
 from PIL import Image
 maxMsgSize = 24
 
+# Convertion d'un string vers un binaire
 def from_str_to_bin(message):
     bin_msg = ""
     for char in message:
@@ -12,70 +13,56 @@ def from_str_to_bin(message):
         bin_msg+=bin_char
     return bin_msg
 
-
+# Modification des données de l'image pixel par pixel
 def change_img_data(msg, data):
     it = 0
-    #li = ligne, col = colones, rgb = [r, g ,b ,a]
     for li in range(len(data)):
         for col in range (len(data[li])):
             for rgb in range(len(data[li][col])):
-                #Arret quand l'itérateur dépace la taille de notre message
                 if it >= len(msg):
                     return data
-
                 bin_rgb = bin(data[li][col][rgb])[2:]
                 list_bin = list(bin_rgb)
-                #On écrit sur le dernier bit de la couleur le bit de notre msg
                 list_bin[-1] = msg[it]
                 rst = int("".join(list_bin),2)
                 data[li][col][rgb] = rst
                 it += 1
 
-
-def enc(msg, img_path):
+# Ecriture des données (msg) dans l'image -> création d'une nouvelle image
+def enc_msg(msg, img_path):
     #Récupération des données de l'image
     image = Image.open(img_path)
     img_data = asarray(image).copy()
-    
 
-    # Test de la longueur du message (en binaire donc *8).
-    # Si elle excède la taille de l'image divisée par 4
-    # 4bits du message sont codé sur 1pixel (un bit par couleur +1 alpha)
-    # Alors le message ne peut être encodé dans l'image
-    if len(msg)*8 > len(img_data)*len(img_data[0])/4:
-        print("msg too long")
+    # Test de la longueur du message 
+    if len(msg)*8 > len(img_data)*len(img_data[0])*4:
+        print("msg too long !")
         return
     
-
     # Convertion du message en binaire
+    print("message to encrypt is :", msg)
     bin_msg = from_str_to_bin(msg)
-    print("message bin = ", bin_msg)
+    print("message in bin is :", bin_msg)
 
-
-    # Ecriture de la taille du message sur 3 octet pour la décription
-    # La taille sur 3octet permet une taille max de 16 millions de bits
-    # Soit une image de 16M/3 = 5.5M pixels
+    # Ecriture de la taille du message
+    print("message length is :",len(bin_msg),"bits")
     msg_taille = bin(len(bin_msg))[2:]
     while len(msg_taille) < maxMsgSize:
         msg_taille = "0" + msg_taille
-    print("message size = ",msg_taille)
 
-
-    # Creation du message complet à écrire 
-    enc_msg = msg_taille + bin_msg
-    print("final message = ",enc_msg)
-
+    # Création du message complet à écrire 
+    final_msg = msg_taille + bin_msg
 
     #Ecriture du message & de la taille dans l'image
-    change_img_data(enc_msg, img_data)
+    change_img_data(final_msg, img_data)
 
-    #Sauvegarde de limage dans le dossier outputs
+    #Sauvegarde de l'image dans le dossier outputs
     new_image = Image.fromarray(img_data)
     new_image.save("outputs/image_enc.png")
 
 
 
-
+# Récupère les 24 premiers bits encodés dans l'image -> déduit la taille du message
 def get_msg_size(data):
     it = 0
     size = []
@@ -90,10 +77,12 @@ def get_msg_size(data):
                 size.append(list_bin[-1])
                 it += 1
 
+# Enlève les 24 premiers bits de l'entrée
 def delete_start(data):
     del data[:maxMsgSize]
     return data
 
+# Récupère les données dans l'image jusqu'à taille msg + maxMsgSize (24b)
 def get_img_data(data, size):
     it = 0
     message = []
@@ -110,35 +99,38 @@ def get_img_data(data, size):
                 message.append(list_bin[-1])
                 it += 1
 
-def dec(img_path):
-    #Récupération des données de l'image
-    image = Image.open(img_path)
-    img_data = asarray(image).copy() 
-
-    #Récupération de la taille de l'image
-    msgSize = get_msg_size(img_data)
-    print("Message size : ",msgSize,"bits")
-
-    #Lecture du message
-    message = get_img_data(img_data, msgSize)
+# Convertion d'un binaire vers un string
+def from_bin_to_str(message):
     rst = []
-
-
     for i in range(len(message)//8):
         rst.append(message[i*8:(i+1)*8])
-    print(rst)
 
     final_message = ""
     for i in range(len(rst)):
         final_message += chr(int(rst[i],2))
+    return final_message
+
+# Extraction des données dans l'image -> message final
+def dec_msg(img_path):
+    #Récupération des données de l'image
+    image = Image.open(img_path)
+    img_data = asarray(image).copy() 
+
+    #Récupération de la taille du message
+    msgSize = get_msg_size(img_data)
+    print("Message size found : ",msgSize,"bits")
+
+    #Lecture du message
+    message = get_img_data(img_data, msgSize)
+
+    final_message = from_bin_to_str(message)
     print("Message is : ",final_message,)
-
-
 
 
 
 #MAIN
 print("Encryption : ")
-enc("coucou", "inputs/image.png")
+enc_msg("coucou", "inputs/image.png")
+
 print("\nDécryption : ")
-dec("outputs/image_enc.png")
+dec_msg("outputs/image_enc.png")
