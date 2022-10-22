@@ -11,6 +11,7 @@ Installation des librairies
 - [x] Lecture de message
 - [ ] Ecriture de fichiers
 - [ ] Lecture de fichiers
+- [ ] Lecture & Ecriture dans une vidéo
 
 ---
 
@@ -21,8 +22,9 @@ Chiffrement
 
 Déchiffrement
 * `get_msg_size(data)` : Récupère les 24 premiers bits encodé dans l'image (taille max du message).
-* `get_img_data(data, size)` : Récupère le message bit a bit encodé dans l'image grâce à la taille.
 * `delete_start(data)` : Enlève les 24 premiers bits dans le message (taille max de la clé)
+* `get_img_data(data, size)` : Récupère le message bit a bit encodé dans l'image grâce à la taille.
+* `from_bin_to_str(message)` : Convertit un binaire en string
 
 
 
