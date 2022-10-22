@@ -5,7 +5,8 @@ Installation des librairies
 * `numpy` Pour convertir les données de l'image en tableau : `pip3 install numpy`
 
 ### Compilation :
-* `python3 enc_message.py <message> <path_to_image>`, **exemple**: `python3 enc_message.py coucou inputs/image.png `
+* `python3 enc_message.py <message> <path_to_image>`
+* **Exemple** : `python3 enc_message.py coucou inputs/image.png `
 
 ---
 
@@ -32,7 +33,8 @@ Déchiffrement
 
 ---
 ### Sources :
-* [Python Command Line Arguments](https://realpython.com/python-command-line-arguments/) : Permet d'afficher tous les arguments dans la ligne de commande
+* Vidéo explicative de la Stéganographie [Dissimuler de l'information grâce à la stéganographie](https://www.youtube.com/watch?v=uGmQcJAI0g0).
+* [Python Command Line Arguments](https://realpython.com/python-command-line-arguments/) : Permet d'afficher tous les arguments dans la ligne de commande.
 ```py
 import sys
 
@@ -41,6 +43,9 @@ if __name__ == "__main__":
     for i, arg in enumerate(sys.argv):
         print(f"Argument {i:>6}: {arg}")
 ```
+* [Basic Markdown Syntax](https://www.markdownguide.org/basic-syntax/).
+* [Python String join() Method](https://www.w3schools.com/python/ref_string_join.asp).
+
  
 
 
