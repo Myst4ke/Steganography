@@ -13,7 +13,7 @@ On peut compiler grace à `python3 main.py` suivit d'une des commandes.
 **Les différentes commandes :**
 * `message` : Ecrit les données du message qui suit dans l'image fournie.
 * **Ex :** `message "coucou !" image.png`
-* `file` Ecrit les données du message qui suit dans l'image fournie.
+* `file` Ecrit les données du fichier qui suit dans l'image fournie.
 * **Ex :** `file test.txt image.png`
 * `dec-message` Lit les données contenues dans l'image et les affiche.
 * **Ex :** `dec-message image_enc.png`
