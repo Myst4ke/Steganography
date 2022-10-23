@@ -5,8 +5,21 @@ Installation des librairies
 * `numpy` Pour convertir les données de l'image en tableau : `pip3 install numpy`
 
 ### Compilation :
-* `python3 enc_message.py <"message"> <path_to_image>`
-* **Exemple** : `python3 enc_message.py "coucou" inputs/image.png `
+Le fichier pris en entrée **doit être dans le dossier** `/inputs`. 
+Le résultat, lui se trouve dans le dossier `/outputs`.
+
+On peut compiler grace à `python3 main.py` suivit d'une des commandes.
+
+**Les différentes commandes :**
+* `message` : Ecrit les données du message qui suit dans l'image fournie.
+* **Ex :** `message "coucou !" image.png`
+* `file` Ecrit les données du message qui suit dans l'image fournie.
+* **Ex :** `file test.txt image.png`
+* `dec-message` Lit les données contenues dans l'image et les affiche.
+* **Ex :** `dec-message image_enc.png`
+* `dec-file` Lit les données contenues dans l'image et les écrit dans une fichier.
+* **Ex :** `dec-file image_enc.png`
+* `help` liste les différentes commandes et comment les utiliser
 
 ---
 
@@ -14,8 +27,8 @@ Installation des librairies
 - [x] Ecriture de message 
 - [x] Lecture de message
 - [x] Arguments en ligne de commande
-- [ ] Ecriture de fichiers
-- [ ] Lecture de fichiers
+- [x] Ecriture de fichiers
+- [x] Lecture de fichiers
 - [ ] Lecture & Ecriture dans une vidéo
 
 ---
