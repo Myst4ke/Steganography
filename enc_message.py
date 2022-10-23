@@ -31,7 +31,7 @@ def change_img_data(msg, data):
 # Ecriture des données (msg) dans l'image -> création d'une nouvelle image
 def enc_msg(msg, img_path):
     #Récupération des données de l'image
-    image = Image.open(img_path)
+    image = Image.open("inputs/"+img_path)
     img_data = asarray(image).copy()
 
     # Test de la longueur du message 
@@ -40,9 +40,7 @@ def enc_msg(msg, img_path):
         return
     
     # Convertion du message en binaire
-    print("message to encrypt is :", msg)
     bin_msg = from_str_to_bin(msg)
-    print("message in bin is :", bin_msg)
 
     # Ecriture de la taille du message
     print("message length is :",len(bin_msg),"bits")
@@ -58,6 +56,7 @@ def enc_msg(msg, img_path):
 
     #Sauvegarde de l'image dans le dossier outputs
     new_image = Image.fromarray(img_data)
+    print("The encoded image can be found at : outputs/image_enc.png")
     new_image.save("outputs/image_enc.png")
 
 
@@ -113,7 +112,7 @@ def from_bin_to_str(message):
 # Extraction des données dans l'image -> message final
 def dec_msg(img_path):
     #Récupération des données de l'image
-    image = Image.open(img_path)
+    image = Image.open("outputs/"+img_path)
     img_data = asarray(image).copy() 
 
     #Récupération de la taille du message
@@ -124,13 +123,6 @@ def dec_msg(img_path):
     message = get_img_data(img_data, msgSize)
 
     final_message = from_bin_to_str(message)
-    print("Message is : ",final_message,)
+    return final_message
 
 
-
-#MAIN
-print("Encryption : ")
-enc_msg("coucou", "inputs/image.png")
-
-print("\nDécryption : ")
-dec_msg("outputs/image_enc.png")
