@@ -5,8 +5,8 @@ Installation des librairies
 * `numpy` Pour convertir les données de l'image en tableau : `pip3 install numpy`
 
 ### Compilation :
-* `python3 enc_message.py <message> <path_to_image>`
-* **Exemple** : `python3 enc_message.py coucou inputs/image.png `
+* `python3 enc_message.py <"message"> <path_to_image>`
+* **Exemple** : `python3 enc_message.py "coucou" inputs/image.png `
 
 ---
 
