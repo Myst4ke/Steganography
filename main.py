@@ -17,8 +17,8 @@ def args_check():
     elif len(sys.argv) == 2 and sys.argv[1] == "help":
         print("Help :\n")
         print("The functions are :\n")
-        print("<message> to encrypt the following message")
-        print("<file> to encrypt the file at following location")
+        print("<enc-message> to encrypt the following message")
+        print("<enc-file> to encrypt the file at following location")
         print("<dec-message> to decrypt the following image and print the result")
         print("<dec-file> to decrypt the following image and write the result in a file")
         sys.exit(0)
@@ -33,10 +33,10 @@ def args_check():
 def main():
     args = args_check()
     match args[0]:
-        case "message":
+        case "enc-message":
             print("Message encryption ...")
             enc_msg(args[1], args[2])
-        case "file":
+        case "enc-file":
             print("File encryption ...")
             enc_file("test.txt", "image.png")
         case "dec-message":
