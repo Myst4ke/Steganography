@@ -9,7 +9,6 @@ def print_args():
         print(f"Argument {i:>6}: {arg}")
 
 
-# Vérifie que seul 3 arguments sont fournis et renvoie les 2 derniers
 def args_check():
     if len(sys.argv) == 4:
         return(sys.argv[1], sys.argv[2], sys.argv[3])
