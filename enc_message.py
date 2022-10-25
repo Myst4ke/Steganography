@@ -29,7 +29,7 @@ def change_img_data(msg, data):
                 it += 1
 
 # Ecriture des données (msg) dans l'image -> création d'une nouvelle image
-def enc_msg(msg, img_path):
+def enc_msg(msg, img_path, enc_img_path):
     #Récupération des données de l'image
     image = Image.open("inputs/"+img_path)
     img_data = asarray(image).copy()
@@ -56,8 +56,8 @@ def enc_msg(msg, img_path):
 
     #Sauvegarde de l'image dans le dossier outputs
     new_image = Image.fromarray(img_data)
-    print("The encoded image can be found at : outputs/image_enc.png")
-    new_image.save("outputs/image_enc.png")
+    print("The encoded image can be found at : outputs/"+enc_img_path)
+    new_image.save("outputs/"+enc_img_path)
 
 
 
