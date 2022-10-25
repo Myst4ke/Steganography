@@ -10,9 +10,9 @@ def enc_file(filename, image_name):
         rst += (chr(char))
     enc_msg(rst, image_name)
 
-def dec_file(image_name):
+def dec_file(image_name, outputfile):
     msg = dec_msg(image_name)
-    file=open("outputs/result.txt", "w+")
-    print("New decypted file created, can be found at : outputs/result.txt")
+    file=open("outputs/"+outputfile, "w+")
+    print("New decypted file created, can be found at : outputs/"+outputfile)
     file.write(msg)
 

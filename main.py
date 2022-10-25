@@ -9,11 +9,14 @@ def print_args():
         print(f"Argument {i:>6}: {arg}")
 
 
+# Vérifie que seul 3 arguments sont fournis et renvoie les 2 derniers
 def args_check():
     if len(sys.argv) == 4:
         return(sys.argv[1], sys.argv[2], sys.argv[3])
     elif len(sys.argv) == 3:
         return(sys.argv[1], sys.argv[2])
+    elif len(sys.argv) == 5 and sys.argv[3] == "-o":
+        return(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
     elif len(sys.argv) == 2 and sys.argv[1] == "help":
         print("Help :\n")
         print("The functions are :\n")
@@ -43,14 +46,15 @@ def main():
             print("Message decryption ...")
             print("Message is :",dec_msg(args[1]))
         case "dec-file":
-            print("File decryption ...")
-            dec_file(args[1])
+            if len(args)==4:
+                print("File decryption ...")
+                dec_file(args[1], args[3])
+            else:
+                print("File decryption ...")
+                dec_file(args[1], "outputs/result.txt")
         case _ :
             print("The function that you supplied is either misswritten or doesn't exit")
             return 0
-
-
-
 
 if __name__ == "__main__":
     main()
