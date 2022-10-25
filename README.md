@@ -6,7 +6,9 @@ Installation des librairies
 
 ### Compilation :
 Le fichier pris en entrée **doit être dans le dossier** `/inputs`. 
-Le résultat, lui se trouve dans le dossier `/outputs`.
+L'image qui en résulte, elle, se trouve dans le dossier `/outputs`.
+
+L'image que l'on veut lire doit rester dans `/outputs`.
 
 On peut compiler grace à `python3 main.py` suivit d'une des commandes.
 
