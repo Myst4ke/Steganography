@@ -21,6 +21,8 @@ On peut compiler grace à `python3 main.py` suivit d'une des commandes.
 * **Ex :** `dec-message image_enc.png`
 * `dec-file` Lit les données contenues dans l'image et les écrit dans une fichier.
 * **Ex :** `dec-file image_enc.png`
+* `dec-file` peut être accompagné du `-o` pour spécifier un nom de fichier.
+* **Ex :** `dec-file image_enc.png -o test.py`
 * `help` liste les différentes commandes et comment les utiliser
 
 ---
